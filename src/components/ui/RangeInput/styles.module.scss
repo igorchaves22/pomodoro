@@ -1,0 +1,39 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %flex;
+
+    &__ {
+        &box {
+            @extend %flex;
+
+            flex-wrap: nowrap;
+            column-gap: variables.$spacing-3;
+        }
+
+        &text {
+            @extend %text;
+
+            &-- {
+                &label {
+                    flex: 1 1 auto;
+                    text-align: start;
+                }
+
+                &output {
+                    width: max-content;
+                    color: variables.$color-secondary;
+                    font-size: variables.$font-size-xs;
+                }
+            }
+        }
+
+        &input {
+            @include mixins.box;
+
+            accent-color: variables.$color-brand;
+        }
+    }
+}

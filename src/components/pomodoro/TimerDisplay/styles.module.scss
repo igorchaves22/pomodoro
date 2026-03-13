@@ -1,0 +1,103 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %flex;
+
+    flex-direction: column;
+    row-gap: variables.$spacing-5;
+
+    &__ {
+        &box {
+            @extend %flex;
+
+            &-- {
+                &status {
+                    width: max-content;
+                    border-radius: variables.$radius-pill;
+                    padding: variables.$spacing-2 variables.$spacing-6;
+                    flex-wrap: nowrap;
+                }
+
+                &idle {
+                    background-color: rgba(variables.$color-neutral-7, 0.15);
+                }
+
+                &focus {
+                    background-color: rgba(variables.$color-accent, 0.15);
+                }
+
+                &short-break {
+                    background-color: rgba(variables.$color-short-break, 0.15);
+                }
+
+                &long-break {
+                    background-color: rgba(variables.$color-long-break, 0.15);
+                }
+
+                &clock {
+                    width: min(100%, 18rem);
+                    aspect-ratio: 1;
+                    position: relative;
+                }
+
+                &indicators {
+                    width: fit-content;
+                    column-gap: variables.$spacing-2;
+                }
+
+                &indicator {
+                    width: 2.25rem;
+                    aspect-ratio: 16 / 3;
+                    border-radius: variables.$radius-pill;
+                    background-color: rgba(variables.$color-neutral-7, 0.25);
+                }
+
+                &completed {
+                    background-color: variables.$color-brand;
+                }
+            }
+        }
+
+        &text {
+            @extend %text;
+
+            &-- {
+                &status {
+                    font-weight: 500;
+                }
+
+                &idle {
+                    color: variables.$color-primary;
+                }
+
+                &focus {
+                    color: variables.$color-accent;
+                }
+
+                &short-break {
+                    color: variables.$color-short-break;
+                }
+
+                &long-break {
+                    color: variables.$color-long-break;
+                }
+
+                &clock {
+                    @include mixins.layer($position: absolute, $z: 1);
+
+                    top: 50%;
+                    left: 50%;
+                    font-weight: 700;
+                    font-size: variables.$font-size-7xl;
+                    transform: translate(-50%, -50%);
+                }
+
+                &cyclo {
+                    width: max-content;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+export type Colors =
+    | "brand"
+    | "base"
+    | "primary"
+    | "secondary"
+    | "surface"
+    | "accent"
+    | "success"
+    | "error"
+    | "warning"
+    | "info"
+    | "short-break"
+    | "long-break"
+    | "neutral-1"
+    | "neutral-2"
+    | "neutral-3"
+    | "neutral-4"
+    | "neutral-5"
+    | "neutral-6"
+    | "neutral-7"
+    | "neutral-8"
+    | "neutral-9";
+export type IconSize = "sm" | "base" | "lg";

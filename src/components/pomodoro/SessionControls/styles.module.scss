@@ -1,0 +1,43 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %grid;
+
+    grid-template-columns: min(100%, 7rem);
+
+    &__button {
+        @extend %button;
+
+        width: 100%;
+        padding: variables.$spacing-3;
+        border: variables.$line-sm solid transparent;
+        flex-wrap: nowrap;
+        column-gap: variables.$spacing-2;
+        border-radius: variables.$radius-md;
+
+        &-- {
+            &status {
+                border-color: variables.$color-brand;
+                background-color: variables.$color-brand;
+            }
+
+            &restart {
+                border-color: variables.$color-neutral-8;
+            }
+
+            &show:global {
+                animation: zoomIn var(--skip-mode-button-duration) ease;
+            }
+
+            &hide:global {
+                animation: zoomOut var(--skip-mode-button-duration) ease;
+            }
+        }
+    }
+
+    @media (width > variables.$breakpoint-xs) {
+        grid-template-columns: repeat(auto-fit, minmax(0, 7rem));
+    }
+}

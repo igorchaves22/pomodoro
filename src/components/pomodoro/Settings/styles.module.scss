@@ -1,0 +1,101 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %flex;
+
+    width: min(calc(100% - calc(variables.$spacing-4 * 2)), 34rem);
+    border: variables.$line-sm solid variables.$color-neutral-8;
+    border-radius: variables.$radius-md;
+    padding: variables.$spacing-4;
+    margin: variables.$spacing-4;
+    flex-direction: column;
+    row-gap: variables.$spacing-8;
+    background-color: variables.$color-base;
+
+    &__ {
+        &box {
+            @extend %flex;
+
+            &-- {
+                &heading {
+                    @include mixins.grid;
+
+                    grid-template-columns: 1fr max-content;
+                }
+
+                &main {
+                    @extend %scrollbar;
+
+                    max-height: 24rem;
+                    overflow-y: auto;
+                    padding-inline: variables.$spacing-2;
+                    row-gap: variables.$spacing-8;
+                    align-content: start;
+
+                    &::-webkit-scrollbar {
+                        width: 0.3rem;
+                    }
+                }
+
+                &fieldset {
+                    border: none;
+                }
+
+                &fields {
+                    flex-direction: column;
+                    justify-content: start;
+                }
+            }
+        }
+
+        &text {
+            @extend %text;
+
+            text-align: start;
+
+            &-- {
+                &title {
+                    font-weight: 700;
+                    font-size: variables.$font-size-3xl;
+                }
+
+                &subtitle {
+                    margin-bottom: variables.$spacing-6;
+                    font-weight: 500;
+                    font-size: variables.$font-size-base;
+                }
+
+                &reset {
+                    width: max-content;
+                    color: variables.$color-base;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        &button {
+            @extend %button;
+
+            flex-wrap: nowrap;
+            column-gap: variables.$spacing-2;
+
+            &--reset {
+                border-radius: variables.$radius-sm;
+                padding: variables.$spacing-3 variables.$spacing-6;
+                background-color: variables.$color-brand;
+            }
+        }
+    }
+
+    &-- {
+        &show:global {
+            animation: zoomIn 0.5s ease;
+        }
+
+        &hide:global {
+            animation: zoomOut var(--container-hide-delay) ease forwards;
+        }
+    }
+}

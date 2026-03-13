@@ -1,0 +1,61 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %layout;
+
+    border-top: variables.$line-sm solid variables.$color-neutral-8;
+    padding-block: variables.$spacing-8;
+    row-gap: variables.$spacing-5;
+
+    &__ {
+        &box {
+            @extend %flex;
+
+            &-- {
+                &compact {
+                    width: max-content;
+                }
+
+                &logo {
+                    flex-wrap: nowrap;
+                    column-gap: variables.$spacing-2;
+                }
+
+                &list {
+                    list-style: none;
+                }
+            }
+        }
+
+        &image {
+            width: variables.$icon-lg;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+
+        &link {
+            @extend %link;
+        }
+
+        &text {
+            @extend %text;
+
+            color: variables.$color-neutral-4;
+
+            &-- {
+                &logo {
+                    color: variables.$color-brand;
+                    font-weight: 700;
+                    font-size: variables.$font-size-lg;
+                }
+
+                &copyright {
+                    color: variables.$color-neutral-6;
+                    font-size: variables.$font-size-xs;
+                }
+            }
+        }
+    }
+}

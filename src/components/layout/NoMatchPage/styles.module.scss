@@ -1,0 +1,40 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %flex;
+
+    flex-direction: column;
+    row-gap: variables.$spacing-12;
+
+    &__ {
+        &box {
+            @extend %flex;
+
+            flex-direction: column;
+            row-gap: variables.$spacing-2;
+        }
+
+        &text {
+            @extend %text;
+
+            color: variables.$color-secondary;
+
+            &--title {
+                color: variables.$color-primary;
+                font-weight: 700;
+                font-size: variables.$font-size-7xl;
+            }
+        }
+
+        &link {
+            @extend %link;
+
+            width: fit-content;
+            color: variables.$color-brand;
+            font-weight: 500;
+            font-size: variables.$font-size-lg;
+        }
+    }
+}

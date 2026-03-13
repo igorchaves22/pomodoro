@@ -1,0 +1,113 @@
+@use "./variables" as variables;
+@use "./mixins" as mixins;
+
+%viewport {
+    @include mixins.box($height: auto);
+    @include mixins.flow($gap: 0);
+
+    min-height: 100dvh;
+}
+
+%layout {
+    @include mixins.box($bg-color: base);
+    @include mixins.grid;
+    @include mixins.flow;
+
+    padding: variables.$spacing-4;
+    position: relative;
+    grid-template-columns: min(100%, variables.$max-layout);
+    grid-auto-rows: min-content;
+}
+
+%flex {
+    @include mixins.box;
+    @include mixins.flex;
+    @include mixins.flow;
+}
+
+%grid {
+    @include mixins.box;
+    @include mixins.grid;
+    @include mixins.flow;
+}
+
+%scrollbar {
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+
+        &- {
+            &track {
+                background: variables.$color-base;
+            }
+
+            &thumb {
+                border-radius: variables.$radius-pill;
+                background-color: variables.$color-neutral-8;
+
+                &:hover {
+                    background-color: color-mix(in srgb, variables.$color-neutral-8 88%, white 12%);
+                }
+
+                &:active {
+                    background-color: color-mix(in srgb, variables.$color-neutral-8 95%, black 15%);
+                }
+            }
+        }
+    }
+}
+
+%button {
+    @include mixins.box;
+    @include mixins.flex($wrap: nowrap);
+    @include mixins.flow;
+    @include mixins.text;
+
+    width: max-content;
+    border: none;
+    cursor: pointer;
+    transition:
+        filter 0.12s ease-out,
+        transform 0.12s ease-out;
+
+    &:enabled {
+        transition: all 0.12s ease-out;
+
+        &:hover {
+            filter: brightness(1.12);
+            transform: scale(1.02);
+        }
+
+        &:active {
+            filter: brightness(0.85);
+            transform: scale(0.98);
+        }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+%text {
+    @include mixins.box;
+    @include mixins.text;
+}
+
+%link {
+    @include mixins.box;
+    @include mixins.text;
+    @include mixins.flex($wrap: nowrap);
+    @include mixins.flow($gap: 1);
+
+    text-decoration: none;
+    transition: filter 0.12s ease-out;
+
+    &:hover {
+        filter: brightness(1.12);
+    }
+
+    &:active {
+        filter: brightness(0.85);
+    }
+}

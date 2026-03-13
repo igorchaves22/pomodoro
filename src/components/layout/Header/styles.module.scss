@@ -1,0 +1,17 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %layout;
+
+    @include mixins.layer($position: absolute, $z: 10);
+
+    border-bottom: variables.$line-sm solid variables.$color-neutral-8;
+    padding-block: variables.$spacing-2;
+    justify-items: end;
+
+    &__button {
+        @extend %button;
+    }
+}

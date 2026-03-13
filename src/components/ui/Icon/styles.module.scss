@@ -1,0 +1,30 @@
+@use "~styles/variables" as variables;
+@use "~styles/tokens" as tokens;
+@use "~styles/mixins" as mixins;
+
+.element {
+    @include mixins.box($width: max-content);
+
+    display: block;
+    flex: 0 0 auto;
+    color: variables.$color-primary;
+    font-size: variables.$icon-base;
+
+    &-- {
+        &color- {
+            @each $color, $value in tokens.$color-token {
+                &#{$color} {
+                    color: $value;
+                }
+            }
+        }
+
+        &size- {
+            @each $size, $value in tokens.$icon-token {
+                &#{$size} {
+                    font-size: $value;
+                }
+            }
+        }
+    }
+}

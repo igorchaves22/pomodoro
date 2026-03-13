@@ -1,0 +1,108 @@
+@use "~styles/variables" as variables;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %flex;
+
+    width: min(100%, 42em);
+    padding: variables.$spacing-4;
+    border-radius: variables.$radius-md;
+    flex-direction: column;
+    row-gap: variables.$spacing-8;
+    background-color: variables.$color-surface;
+
+    &__ {
+        &text {
+            @extend %text;
+
+            &-- {
+                &title {
+                    font-weight: 700;
+                    font-size: variables.$font-size-2xl;
+                }
+
+                &caption {
+                    grid-row: 2;
+                    color: variables.$color-secondary;
+                    font-size: variables.$font-size-xs;
+                }
+
+                &value {
+                    font-weight: 700;
+                    font-size: variables.$font-size-xl;
+                }
+
+                &completed {
+                    color: variables.$color-accent;
+                }
+            }
+        }
+
+        &box {
+            @extend %flex;
+
+            &-- {
+                &list {
+                    @include mixins.grid;
+
+                    gap: variables.$spacing-6;
+
+                    &::before {
+                        content: "";
+                        width: 85%;
+                        height: variables.$line-lg;
+                        border-radius: variables.$radius-pill;
+                        display: block;
+                        order: 2;
+                        background-color: variables.$color-neutral-8;
+                    }
+
+                    & > :first-child {
+                        order: 1;
+                    }
+
+                    & > :last-child {
+                        order: 3;
+                    }
+                }
+
+                &item {
+                    @include mixins.grid;
+                }
+
+                &completed {
+                    width: max-content;
+                    flex-wrap: nowrap;
+                    column-gap: variables.$spacing-2;
+                }
+            }
+        }
+
+        &image {
+            width: variables.$icon-lg;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+    }
+
+    @media (width > variables.$breakpoint-xs) {
+        &__box-- {
+            &list {
+                grid-template-columns: 1fr max-content 1fr;
+                grid-template-rows: 1fr min-content;
+
+                &::before {
+                    width: variables.$line-lg;
+                    height: 100%;
+                    grid-row: span 2;
+                }
+            }
+
+            &item {
+                grid-template-rows: subgrid;
+                grid-row: span 2;
+            }
+        }
+    }
+}

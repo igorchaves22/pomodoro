@@ -1,0 +1,11 @@
+@use "~styles/variables" as variables;
+@use "~styles/components";
+
+.container {
+    @extend %viewport;
+    @extend %layout;
+
+    height: auto;
+    padding-block: calc(var(--header-height) + variables.$spacing-6) variables.$spacing-12;
+    row-gap: variables.$spacing-12;
+}

@@ -1,0 +1,72 @@
+@use "./variables" as variables;
+
+$spacing-token: (
+    0: 0,
+    1: variables.$spacing-1,
+    2: variables.$spacing-2,
+    3: variables.$spacing-3,
+    4: variables.$spacing-4,
+    5: variables.$spacing-5,
+    6: variables.$spacing-6,
+    7: variables.$spacing-7,
+    8: variables.$spacing-8,
+    9: variables.$spacing-9,
+    10: variables.$spacing-10,
+    11: variables.$spacing-11,
+    12: variables.$spacing-12,
+    13: variables.$spacing-13,
+    14: variables.$spacing-14,
+    15: variables.$spacing-15
+);
+
+$color-token: (
+    "transparent": transparent,
+    brand: variables.$color-brand,
+    base: variables.$color-base,
+    primary: variables.$color-primary,
+    secondary: variables.$color-secondary,
+    surface: variables.$color-surface,
+    accent: variables.$color-accent,
+    success: variables.$color-success,
+    error: variables.$color-error,
+    warning: variables.$color-warning,
+    info: variables.$color-info,
+    short-break: variables.$color-short-break,
+    long-break: variables.$color-long-break,
+    neutral-1: variables.$color-neutral-1,
+    neutral-2: variables.$color-neutral-2,
+    neutral-3: variables.$color-neutral-3,
+    neutral-4: variables.$color-neutral-4,
+    neutral-5: variables.$color-neutral-5,
+    neutral-6: variables.$color-neutral-6,
+    neutral-7: variables.$color-neutral-7,
+    neutral-8: variables.$color-neutral-8,
+    neutral-9: variables.$color-neutral-9
+);
+
+$font-weight-token: (
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700
+);
+
+$font-size-token: (
+    xs: variables.$font-size-xs,
+    sm: variables.$font-size-sm,
+    base: variables.$font-size-base,
+    lg: variables.$font-size-lg,
+    xl: variables.$font-size-xl,
+    2xl: variables.$font-size-2xl,
+    3xl: variables.$font-size-3xl,
+    4xl: variables.$font-size-4xl,
+    5xl: variables.$font-size-5xl,
+    6xl: variables.$font-size-6xl,
+    7xl: variables.$font-size-7xl
+);
+
+$icon-token: (
+    sm: variables.$icon-sm,
+    base: variables.$icon-base,
+    lg: variables.$icon-lg
+);
