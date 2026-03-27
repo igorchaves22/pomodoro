@@ -1,0 +1,23 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    width: min(100%, 18rem);
+    aspect-ratio: 1;
+    position: relative;
+
+    &__text {
+        @extend %text;
+
+        @include mixins.layer($position: absolute, $z: 1);
+
+        top: 50%;
+        left: 50%;
+        font-weight: 700;
+        font-size: theme.$font-size-7xl;
+        transform: translate(-50%, -50%);
+    }
+}

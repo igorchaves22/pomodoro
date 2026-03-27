@@ -1,0 +1,135 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:math";
+@use "sass:list";
+@use "./theme" as theme;
+@use "./tokens" as tokens;
+
+@mixin validate($params...) {
+    @each $name, $value, $type-allowed, $values-allowed in $params {
+        $value-type: meta.type-of($value);
+        $is-valid-type: false;
+        $is-valid-value: list.index($values-allowed, $value) != null;
+
+        @if $type-allowed == number {
+            $is-valid-type: $value-type == number and math.is-unitless($value);
+        } @else if $type-allowed != null {
+            $is-valid-type: $value-type == $type-allowed;
+        }
+        @if not($is-valid-type or $is-valid-value) {
+            $message: "Invalid value for #{$name}. Expected";
+
+            @if $type-allowed {
+                $message: $message + " type `#{$type-allowed}` or";
+            }
+
+            @error $message + " one of `#{$values-allowed}`. Received: `#{$value}`";
+        }
+    }
+}
+
+@mixin box($width: 100%, $height: min-content, $bg-color: "transparent") {
+    @include validate(
+        ("$width", $width, number, (max-content, 100%)),
+        ("$height", $height, number, (min-content, auto)),
+        ("$bg-color", $bg-color, null, map.keys(tokens.$color-token))
+    );
+
+    @if meta.type-of($width) == "number" and math.is-unitless($width) {
+        $width: #{$width}rem;
+    }
+    @if meta.type-of($height) == "number" and math.is-unitless($height) {
+        $height: #{$height}rem;
+    }
+
+    $bg-color: map.get(tokens.$color-token, $bg-color);
+
+    width: $width;
+    height: $height;
+    background-color: $bg-color;
+}
+
+%scrollbar {
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+
+        &- {
+            &track {
+                background: theme.$color-base;
+            }
+
+            &thumb {
+                border-radius: theme.$radius-pill;
+                background-color: theme.$color-neutral-8;
+
+                &:hover {
+                    background-color: color-mix(in srgb, theme.$color-neutral-8 88%, white 12%);
+                }
+
+                &:active {
+                    background-color: color-mix(in srgb, theme.$color-neutral-8 95%, black 15%);
+                }
+            }
+        }
+    }
+}
+
+@mixin layer($position: relative, $z: 0) {
+    @include validate(("$position", $position, null, (relative, absolute, fixed)), ("$z", $z, number));
+
+    position: $position;
+    inset: 0;
+    z-index: $z;
+}
+
+@mixin display-flex($grow: 0, $shrink: 0, $basis: auto, $direction: row, $wrap: wrap) {
+    @include validate(
+        ("$grow", $grow, number),
+        ("$shrink", $shrink, number),
+        ("$basis", $basis, number, (auto)),
+        ("$direction", $direction, null, (row, column)),
+        ("$wrap", $wrap, null, (nowrap, wrap))
+    );
+
+    @if meta.type-of($basis) == "number" {
+        $basis: #{$basis}rem;
+    }
+
+    display: flex;
+    flex: $grow $shrink $basis;
+    flex-flow: $direction $wrap;
+}
+
+@mixin display-grid {
+    display: grid;
+    grid: min-content / 100%;
+}
+
+@mixin flow($gap: 4) {
+    @include validate(("$gap", $gap, null, map.keys(tokens.$spacing-token)));
+
+    $gap: map.get(tokens.$spacing-token, $gap);
+
+    gap: $gap;
+    place-content: center;
+    place-items: center;
+}
+
+@mixin text($color: primary, $weight: regular, $size: sm, $align: center) {
+    @include validate(
+        ("$color", $color, null, map.keys(tokens.$color-token)),
+        ("$weight", $weight, null, map.keys(tokens.$font-weight-token)),
+        ("$size", $size, null, map.keys(tokens.$font-size-token)),
+        ("$align", $align, null, (start, end, center, justify))
+    );
+
+    $color: map.get(tokens.$color-token, $color);
+    $weight: map.get(tokens.$font-weight-token, $weight);
+    $size: map.get(tokens.$font-size-token, $size);
+
+    color: $color;
+    font:
+        normal $weight $size / normal "Space Grotesk",
+        sans-serif;
+    text-align: $align;
+}

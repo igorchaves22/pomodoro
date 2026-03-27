@@ -1,0 +1,21 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %viewport;
+
+    @include mixins.layer($position: fixed, $z: 30);
+
+    background-color: color-mix(in srgb, theme.$color-base 80%, transparent 20%);
+
+    &-- {
+        &show:global {
+            animation: fadeIn 0.25s linear;
+        }
+
+        &hide:global {
+            animation: fadeOut 0.25s linear var(--container-exit-delay) forwards;
+        }
+    }
+}

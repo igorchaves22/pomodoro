@@ -1,0 +1,7 @@
+@use "./components";
+
+html {
+    body {
+        @extend %scrollbar;
+    }
+}

@@ -1,0 +1,88 @@
+@use "./theme" as theme;
+@use "./mixins" as mixins;
+
+%viewport {
+    @include mixins.box($height: auto);
+    @include mixins.flow($gap: 0);
+
+    min-height: 100dvh;
+}
+
+%layout {
+    @include mixins.box($bg-color: base);
+    @include mixins.display-grid;
+    @include mixins.flow;
+
+    padding: theme.$spacing-4;
+    position: relative;
+    grid-template-columns: min(100%, theme.$max-layout);
+    grid-auto-rows: min-content;
+}
+
+%display-flex {
+    @include mixins.box;
+    @include mixins.display-flex;
+    @include mixins.flow;
+}
+
+%display-grid {
+    @include mixins.box;
+    @include mixins.display-grid;
+    @include mixins.flow;
+}
+
+%button {
+    @include mixins.box;
+    @include mixins.display-flex($wrap: nowrap);
+    @include mixins.flow;
+    @include mixins.text;
+
+    width: max-content;
+    border: none;
+    cursor: pointer;
+    transition:
+        filter 0.12s ease-out,
+        transform 0.12s ease-out;
+
+    &:enabled {
+        transition: all 0.12s ease-out;
+
+        &:hover {
+            filter: brightness(1.12);
+            transform: scale(1.02);
+        }
+
+        &:active {
+            filter: brightness(0.85);
+            transform: scale(0.98);
+        }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+%text {
+    @include mixins.box;
+    @include mixins.text;
+}
+
+%link {
+    @include mixins.box;
+    @include mixins.text;
+    @include mixins.display-flex($wrap: nowrap);
+    @include mixins.flow($gap: 1);
+
+    text-decoration: none;
+    transition: filter 0.12s ease-out;
+
+    &:hover {
+        filter: brightness(1.12);
+    }
+
+    &:active {
+        filter: brightness(0.85);
+    }
+}

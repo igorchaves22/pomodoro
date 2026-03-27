@@ -1,0 +1,17 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %layout;
+
+    @include mixins.layer($position: absolute, $z: 10);
+
+    border-bottom: theme.$line-sm solid theme.$color-neutral-8;
+    padding-block: theme.$spacing-2;
+    justify-items: end;
+
+    &__button {
+        @extend %button;
+    }
+}

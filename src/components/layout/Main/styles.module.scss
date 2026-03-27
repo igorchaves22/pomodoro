@@ -1,0 +1,11 @@
+@use "~styles/theme" as theme;
+@use "~styles/components";
+
+.container {
+    @extend %viewport;
+    @extend %layout;
+
+    height: auto;
+    padding-block: calc(var(--header-height) + theme.$spacing-6) theme.$spacing-12;
+    row-gap: theme.$spacing-12;
+}

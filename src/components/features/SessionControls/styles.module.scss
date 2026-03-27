@@ -1,0 +1,43 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-grid;
+
+    grid-template-columns: min(100%, 7rem);
+
+    &__button {
+        @extend %button;
+
+        width: 100%;
+        padding: theme.$spacing-3;
+        border: theme.$line-sm solid transparent;
+        flex-wrap: nowrap;
+        column-gap: theme.$spacing-2;
+        border-radius: theme.$radius-md;
+
+        &-- {
+            &status {
+                border-color: theme.$color-brand;
+                background-color: theme.$color-brand;
+            }
+
+            &restart {
+                border-color: theme.$color-neutral-8;
+            }
+
+            &show:global {
+                animation: zoomIn var(--skip-mode-button-duration) ease;
+            }
+
+            &hide:global {
+                animation: zoomOut var(--skip-mode-button-duration) ease;
+            }
+        }
+    }
+
+    @media (width > theme.$breakpoint-xs) {
+        grid-template-columns: repeat(auto-fit, minmax(0, 7rem));
+    }
+}

@@ -1,0 +1,40 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    flex-direction: column;
+    row-gap: theme.$spacing-12;
+
+    &__ {
+        &box {
+            @extend %display-flex;
+
+            flex-direction: column;
+            row-gap: theme.$spacing-2;
+        }
+
+        &text {
+            @extend %text;
+
+            color: theme.$color-secondary;
+
+            &--title {
+                color: theme.$color-primary;
+                font-weight: 700;
+                font-size: theme.$font-size-7xl;
+            }
+        }
+
+        &link {
+            @extend %link;
+
+            width: fit-content;
+            color: theme.$color-brand;
+            font-weight: 500;
+            font-size: theme.$font-size-lg;
+        }
+    }
+}

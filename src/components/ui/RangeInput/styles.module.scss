@@ -1,0 +1,39 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    &__ {
+        &box {
+            @extend %display-flex;
+
+            flex-wrap: nowrap;
+            column-gap: theme.$spacing-3;
+        }
+
+        &text {
+            @extend %text;
+
+            &-- {
+                &label {
+                    flex: 1 1 auto;
+                    text-align: start;
+                }
+
+                &output {
+                    width: max-content;
+                    color: theme.$color-secondary;
+                    font-size: theme.$font-size-xs;
+                }
+            }
+        }
+
+        &input {
+            @include mixins.box;
+
+            accent-color: theme.$color-brand;
+        }
+    }
+}

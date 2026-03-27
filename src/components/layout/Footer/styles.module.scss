@@ -1,0 +1,42 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %layout;
+
+    border-top: theme.$line-sm solid theme.$color-neutral-8;
+    padding-block: theme.$spacing-8;
+    row-gap: theme.$spacing-5;
+
+    &__ {
+        &box {
+            @extend %display-flex;
+
+            &-- {
+                &list {
+                    list-style: none;
+                }
+
+                &item {
+                    width: max-content;
+                }
+            }
+        }
+
+        &link {
+            @extend %link;
+        }
+
+        &text {
+            @extend %text;
+
+            color: theme.$color-secondary;
+
+            &--copyright {
+                color: theme.$color-neutral-6;
+                font-size: theme.$font-size-xs;
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    width: min(100%, 42em);
+    padding: theme.$spacing-4;
+    border-radius: theme.$radius-md;
+    flex-direction: column;
+    row-gap: theme.$spacing-8;
+    background-color: theme.$color-surface;
+
+    &__ {
+        &text {
+            @extend %text;
+
+            &-- {
+                &title {
+                    font-weight: 700;
+                    font-size: theme.$font-size-3xl;
+                }
+
+                &caption {
+                    grid-row: 2;
+                    color: theme.$color-secondary;
+                    font-size: theme.$font-size-xs;
+                }
+
+                &value {
+                    font-weight: 700;
+                    font-size: theme.$font-size-xl;
+                }
+
+                &completed {
+                    color: theme.$color-accent;
+                }
+            }
+        }
+
+        &box {
+            @extend %display-flex;
+
+            &-- {
+                &list {
+                    @include mixins.display-grid;
+
+                    gap: theme.$spacing-6;
+
+                    &::before {
+                        content: "";
+                        width: 85%;
+                        height: theme.$line-lg;
+                        border-radius: theme.$radius-pill;
+                        display: block;
+                        order: 2;
+                        background-color: theme.$color-neutral-8;
+                    }
+
+                    & > :first-child {
+                        order: 1;
+                    }
+
+                    & > :last-child {
+                        order: 3;
+                    }
+                }
+
+                &item {
+                    @include mixins.display-grid;
+                }
+
+                &completed {
+                    width: max-content;
+                    flex-wrap: nowrap;
+                    column-gap: theme.$spacing-2;
+                }
+            }
+        }
+    }
+
+    @media (width > theme.$breakpoint-xs) {
+        &__box-- {
+            &list {
+                grid-template-columns: 1fr max-content 1fr;
+                grid-template-rows: 1fr min-content;
+
+                &::before {
+                    width: theme.$line-lg;
+                    height: 100%;
+                    grid-row: span 2;
+                }
+            }
+
+            &item {
+                grid-template-rows: subgrid;
+                grid-row: span 2;
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    width: min(calc(100% - calc(theme.$spacing-4 * 2)), 34rem);
+    border: theme.$line-sm solid theme.$color-neutral-8;
+    border-radius: theme.$radius-md;
+    padding: theme.$spacing-4;
+    margin: theme.$spacing-4;
+    flex-direction: column;
+    row-gap: theme.$spacing-8;
+    background-color: theme.$color-base;
+
+    &__ {
+        &box {
+            @extend %display-flex;
+
+            &-- {
+                &heading {
+                    @include mixins.display-grid;
+
+                    grid-template-columns: 1fr max-content;
+                }
+
+                &main {
+                    @extend %scrollbar;
+
+                    max-height: 24rem;
+                    overflow-y: auto;
+                    padding-inline: theme.$spacing-2;
+                    row-gap: theme.$spacing-8;
+                    align-content: start;
+
+                    &::-webkit-scrollbar {
+                        width: 0.3rem;
+                    }
+                }
+
+                &fieldset {
+                    border: none;
+                }
+
+                &fields {
+                    flex-direction: column;
+                    justify-content: start;
+                }
+            }
+        }
+
+        &text {
+            @extend %text;
+
+            text-align: start;
+
+            &-- {
+                &title {
+                    font-weight: 700;
+                    font-size: theme.$font-size-3xl;
+                }
+
+                &subtitle {
+                    margin-bottom: theme.$spacing-6;
+                    font-weight: 500;
+                    font-size: theme.$font-size-base;
+                }
+
+                &reset {
+                    width: max-content;
+                    color: theme.$color-base;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        &button {
+            @extend %button;
+
+            flex-wrap: nowrap;
+            column-gap: theme.$spacing-2;
+
+            &--reset {
+                border-radius: theme.$radius-sm;
+                padding: theme.$spacing-3 theme.$spacing-6;
+                background-color: theme.$color-brand;
+            }
+        }
+    }
+
+    &-- {
+        &show:global {
+            animation: zoomIn 0.5s ease;
+        }
+
+        &hide:global {
+            animation: zoomOut var(--container-hide-delay) ease forwards;
+        }
+    }
+}

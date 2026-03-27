@@ -1,0 +1,87 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    flex-direction: column;
+    row-gap: theme.$spacing-5;
+
+    &__ {
+        &box {
+            @extend %display-flex;
+
+            &-- {
+                &status {
+                    width: max-content;
+                    border-radius: theme.$radius-pill;
+                    padding: theme.$spacing-2 theme.$spacing-6;
+                    flex-wrap: nowrap;
+                }
+
+                &idle {
+                    background-color: color-mix(in srgb, theme.$color-idle 15%, transparent 85%);
+                }
+
+                &focus {
+                    background-color: color-mix(in srgb, theme.$color-accent 15%, transparent 85%);
+                }
+
+                &short-break {
+                    background-color: color-mix(in srgb, theme.$color-short-break 15%, transparent 85%);
+                }
+
+                &long-break {
+                    background-color: color-mix(in srgb, theme.$color-long-break 15%, transparent 85%);
+                }
+
+                &indicators {
+                    width: fit-content;
+                    column-gap: theme.$spacing-2;
+                }
+
+                &indicator {
+                    width: 2.25rem;
+                    aspect-ratio: 16 / 3;
+                    border-radius: theme.$radius-pill;
+                    background-color: rgba(theme.$color-neutral-7, 0.25);
+                }
+
+                &completed {
+                    background-color: theme.$color-brand;
+                }
+            }
+        }
+
+        &text {
+            @extend %text;
+
+            &-- {
+                &status {
+                    font-weight: 500;
+                }
+
+                &idle {
+                    color: theme.$color-primary;
+                }
+
+                &focus {
+                    color: theme.$color-accent;
+                }
+
+                &short-break {
+                    color: theme.$color-short-break;
+                }
+
+                &long-break {
+                    color: theme.$color-long-break;
+                }
+
+                &cyclo {
+                    width: max-content;
+                }
+            }
+        }
+    }
+}

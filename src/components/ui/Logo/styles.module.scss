@@ -1,0 +1,27 @@
+@use "~styles/theme" as theme;
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %display-flex;
+
+    width: max-content;
+    flex-wrap: nowrap;
+    column-gap: theme.$spacing-2;
+
+    &__ {
+        &image {
+            width: 2.75rem;
+            object-fit: contain;
+        }
+
+        &text {
+            @extend %text;
+
+            width: max-content;
+            color: theme.$color-brand;
+            font-weight: 700;
+            font-size: theme.$font-size-lg;
+        }
+    }
+}

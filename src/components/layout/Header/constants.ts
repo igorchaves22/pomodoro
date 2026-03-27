@@ -1,0 +1,1 @@
+export const EXIT_DELAY_MILLISECONDS = 400;

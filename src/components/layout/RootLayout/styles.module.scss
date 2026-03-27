@@ -1,0 +1,10 @@
+@use "~styles/mixins" as mixins;
+@use "~styles/components";
+
+.container {
+    @extend %viewport;
+
+    @include mixins.display-flex($direction: column);
+
+    justify-content: space-between;
+}

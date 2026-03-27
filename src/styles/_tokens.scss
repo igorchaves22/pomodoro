@@ -1,0 +1,74 @@
+@use "./theme" as theme;
+
+$spacing-token: (
+    0: 0,
+    1: theme.$spacing-1,
+    2: theme.$spacing-2,
+    3: theme.$spacing-3,
+    4: theme.$spacing-4,
+    5: theme.$spacing-5,
+    6: theme.$spacing-6,
+    7: theme.$spacing-7,
+    8: theme.$spacing-8,
+    9: theme.$spacing-9,
+    10: theme.$spacing-10,
+    11: theme.$spacing-11,
+    12: theme.$spacing-12,
+    13: theme.$spacing-13,
+    14: theme.$spacing-14,
+    15: theme.$spacing-15
+);
+
+$color-token: (
+    "transparent": transparent,
+    brand: theme.$color-brand,
+    base: theme.$color-base,
+    primary: theme.$color-primary,
+    secondary: theme.$color-secondary,
+    surface: theme.$color-surface,
+    accent: theme.$color-accent,
+    success: theme.$color-success,
+    error: theme.$color-error,
+    warning: theme.$color-warning,
+    info: theme.$color-info,
+    idle: theme.$color-idle,
+    short-break: theme.$color-short-break,
+    long-break: theme.$color-long-break,
+    neutral-1: theme.$color-neutral-1,
+    neutral-2: theme.$color-neutral-2,
+    neutral-3: theme.$color-neutral-3,
+    neutral-4: theme.$color-neutral-4,
+    neutral-5: theme.$color-neutral-5,
+    neutral-6: theme.$color-neutral-6,
+    neutral-7: theme.$color-neutral-7,
+    neutral-8: theme.$color-neutral-8,
+    neutral-9: theme.$color-neutral-9
+);
+
+$font-weight-token: (
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700
+);
+
+$font-size-token: (
+    xs: theme.$font-size-xs,
+    sm: theme.$font-size-sm,
+    base: theme.$font-size-base,
+    lg: theme.$font-size-lg,
+    xl: theme.$font-size-xl,
+    2xl: theme.$font-size-2xl,
+    3xl: theme.$font-size-3xl,
+    4xl: theme.$font-size-4xl,
+    5xl: theme.$font-size-5xl,
+    6xl: theme.$font-size-6xl,
+    7xl: theme.$font-size-7xl
+);
+
+$icon-token: (
+    sm: theme.$icon-sm,
+    base: theme.$icon-base,
+    lg: theme.$icon-lg
+);
